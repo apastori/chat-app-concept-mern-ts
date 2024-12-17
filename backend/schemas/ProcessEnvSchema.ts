@@ -6,7 +6,8 @@ const IProcessEnvSchema = z.object({
   ENV: z.enum(['development', 'production', 'testing']),
   DB_NAME: z.string(),
   DB_PORT: portSchema,
-  HOST: z.string()
+  HOST: z.string(),
+  MONGO_DB_URI: z.string()
 })
 
 export { IProcessEnvSchema }

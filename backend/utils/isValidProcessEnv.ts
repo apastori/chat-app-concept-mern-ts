@@ -11,6 +11,7 @@ export function isValidProcessEnv(obj: any): obj is IProcessEnv {
       (isString(obj['ENV']) && isValidEnvironment(obj['ENV'])) &&
       typeof obj['DB_NAME'] === "string" &&
       isValidPort(obj['DB_PORT']) &&
-      (typeof obj['HOST'] === "string")
+      (typeof obj['HOST'] === "string") &&
+      (typeof obj['MONGO_DB_URI'] === "string")
     )
 }

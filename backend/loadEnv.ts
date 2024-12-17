@@ -42,6 +42,7 @@ const ProcessEnvParsed: {
     DB_NAME: string;
     DB_PORT: string | number;
     HOST: string;
+    MONGO_DB_URI: string;
 } = IProcessEnvSchema.parse(data);
 
 const { PORT, DB_PORT } = ProcessEnvParsed

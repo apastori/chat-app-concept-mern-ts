@@ -5,5 +5,6 @@ export interface IProcessEnv {
     ENV: Environment,
     DB_NAME: string,
     DB_PORT: string,
-    HOST: string
+    HOST: string,
+    MONGO_DB_URI: string
 }
