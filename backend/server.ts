@@ -9,7 +9,9 @@ const app: Application = express()
 
 const PORT: string | '5000' = process.env['PORT'] || '5000'
 
+app.use(express.json())
+
 app.use('/api/auth', authRoutes)
 
-startExpressServer(app, PORT);
+startExpressServer(app, PORT)
 
