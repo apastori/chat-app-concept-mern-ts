@@ -1,5 +1,6 @@
 import { RequestHandler, Response, Request } from 'express'
 import { User } from '../models/user.model'
+import { IUser } from '../types/IUser'
 
 export const login: RequestHandler = (_req: Request, res: Response): void => {
 	res.send('login route')
@@ -28,14 +29,15 @@ export const signup: RequestHandler = async (req: Request, res: Response): Promi
 		const firstNameClean: string = firstName.trim()
 		const lastNameClean: string = lastName.trim()
 		const userNameClean: string = userName.trim()
-		const newUser = new User({
-			firstNameClean,
-			lastNameClean,
-			userNameClean,
-			password,
-			gender,
+		const objUser: IUser = {
+			firstName: firstNameClean,
+			lastName: lastNameClean,
+			userName: userNameClean,
+			password: password,
+			gender: gender,
 			profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
-		})
+		}
+		const newUser = new User(objUser)
 		await newUser.save()
 		res.status(201).json({
 			_id: newUser._id,
@@ -45,6 +47,7 @@ export const signup: RequestHandler = async (req: Request, res: Response): Promi
 		})
 	} catch (error: unknown) {
 		if (error instanceof Error) {
+			console.log(error)
 			res.status(500).json({ error: "Internal Server Error" })
 			return
 		}
