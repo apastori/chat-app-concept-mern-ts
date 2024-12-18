@@ -25,6 +25,24 @@ export const signup: RequestHandler = async (req: Request, res: Response): Promi
 		// Hash Password
 		const boyProfilePic: string = `https://avatar.iran.liara.run/public/boy?username=${userName}`
 		const girlProfilePic: string = `https://avatar.iran.liara.run/public/girl?username=${userName}`
+		const firstNameClean: string = firstName.trim()
+		const lastNameClean: string = lastName.trim()
+		const userNameClean: string = userName.trim()
+		const newUser = new User({
+			firstNameClean,
+			lastNameClean,
+			userNameClean,
+			password,
+			gender,
+			profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
+		})
+		await newUser.save()
+		res.status(201).json({
+			_id: newUser._id,
+			firstName: newUser.firstName,
+			lastName: newUser.lastName,
+			profilePic: newUser.profilePic
+		})
 	} catch (error: unknown) {
 		if (error instanceof Error) {
 			res.status(500).json({ error: "Internal Server Error" })
