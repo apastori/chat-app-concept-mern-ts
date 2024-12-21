@@ -11,7 +11,7 @@ import { IProcessEnvSchema } from './schemas/ProcessEnvSchema'
 import { IProcessEnv } from './types/IProcessEnv'
 
 let jsonStringEnv: string | undefined
-const envFilePath: string = join(__dirname, '../env.json');
+const envFilePath: string = join(__dirname, '../env.json')
 
 try {
     jsonStringEnv = readFileSync(envFilePath, 'utf-8')
@@ -43,7 +43,8 @@ const ProcessEnvParsed: {
     DB_PORT: string | number;
     HOST: string;
     MONGO_DB_URI: string;
-} = IProcessEnvSchema.parse(data);
+    JWT_SECRET: string;
+} = IProcessEnvSchema.parse(data)
 
 const { PORT, DB_PORT } = ProcessEnvParsed
 

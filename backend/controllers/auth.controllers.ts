@@ -8,6 +8,8 @@ import { BcryptGenSaltError } from '../errors/BcryptGenSaltError'
 import { BcryptHashPasswordError } from '../errors/BcryptHashError'
 import { isValidPassword } from '../utils/isValidPassword'
 import { ModelUserCreateError } from '../errors/ModelUserCreateError'
+import { generateTokenAndSetCookie } from '../generateToken'
+import type { ObjectId } from 'mongoose'
 
 export const login: RequestHandler = (_req: Request, res: Response): void => {
 	res.send('login route')
@@ -60,6 +62,7 @@ export const signup: RequestHandler = async (req: Request, res: Response): Promi
 		}
 		const newUser = new User(objUser)
 		if (!newUser) throw new ModelUserCreateError()
+		generateTokenAndSetCookie(newUser._id, res)	
 		await newUser.save()
 		res.status(201).json({
 			_id: newUser._id,
