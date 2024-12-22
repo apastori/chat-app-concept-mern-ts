@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser'
 import { ProcessEnvFinal } from './loadEnv'
 import { startExpressServer } from './startExpressServer'
 import authRoutes from './routes/auth.routes'
+import { router as messageRoutes } from './routes/message.routes'
 
 Object.assign(process.env, ProcessEnvFinal)
 
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use('/api/auth', authRoutes)
+app.use('/api/messages', messageRoutes)
 
 startExpressServer(app, PORT)
 
