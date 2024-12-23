@@ -4,6 +4,7 @@ import { ProcessEnvFinal } from './loadEnv'
 import { startExpressServer } from './startExpressServer'
 import authRoutes from './routes/auth.routes'
 import { router as messageRoutes } from './routes/message.routes'
+import { router as userRoutes } from './routes/user.routes'
 
 Object.assign(process.env, ProcessEnvFinal)
 
@@ -16,6 +17,7 @@ app.use(cookieParser())
 
 app.use('/api/auth', authRoutes)
 app.use('/api/messages', messageRoutes)
+app.use("/api/users", userRoutes)
 
 startExpressServer(app, PORT)
 
