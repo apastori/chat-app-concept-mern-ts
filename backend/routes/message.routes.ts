@@ -1,4 +1,4 @@
-import express, { Router } from "express"
+import { Router } from "express"
 import { sendMessage } from "../controllers/message.controller"
 import { getMessages } from "../controllers/message.controller"
 import { protectRoute } from "../protectRoute"

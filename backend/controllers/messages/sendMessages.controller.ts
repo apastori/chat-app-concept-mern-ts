@@ -1,3 +1,4 @@
+import { Types } from "mongoose"
 import { Conversation } from "../../models/conversation.model"
 import { Message } from "../../models/message.model"
 import { Request, Response , RequestHandler } from 'express'
@@ -6,7 +7,7 @@ export const sendMessage: RequestHandler = async (req: Request, res: Response): 
     try {
         const { message } = req.body
 		const { id: receiverId } = req.params
-		const senderId = req.user._id
+		const senderId = req.user._id as Types.ObjectId
 
 		let conversation = await Conversation.findOne({
 			participants: { $all: [senderId, receiverId] },
@@ -42,7 +43,12 @@ export const sendMessage: RequestHandler = async (req: Request, res: Response): 
 		// }
 
 		res.status(201).json(newMessage)  
-    } catch (e) {
-
+    } catch (error: unknown) {
+		if (error instanceof Error) {
+		    console.log(error)
+		    res.status(500).json({ error: "Internal Server Error" })
+            return
+	    }
+        console.error("Unknown error:", error)
     }
 }
