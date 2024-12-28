@@ -14,5 +14,5 @@ export const GenderCheckbox = () => {
 				</label>
 			</div>
 		</div>
-	);
+	)
 }
