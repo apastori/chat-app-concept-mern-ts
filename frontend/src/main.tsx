@@ -1,9 +1,10 @@
+import './index.css'
 import { StrictMode } from 'react'
 import ReactDOM, { Root } from 'react-dom/client'
-import './index.css'
 import { RootNotFoundError } from './errors/RootNotFoundError.ts'
 import { RootNotDivElementError } from './errors/RootNotDivElementError.ts'
 import { App } from './App.tsx'
+import { BrowserRouter } from 'react-router-dom'
 
 // Get the Root Element from the DOM
 const rootElement: HTMLElement | null = document.getElementById('root')
@@ -19,6 +20,8 @@ const root: Root = ReactDOM.createRoot(rootElement as HTMLDivElement)
 
 root.render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 )
