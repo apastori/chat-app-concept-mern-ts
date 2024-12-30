@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { GenderCheckbox } from './GenderCheckBox'
 import { Link } from 'react-router-dom'
 import { IUserSingUpForm } from '../../types/IUserSignUpForm';
+import { Gender } from '../../types/Gender';
 
 export const SignUp = () => {
 
@@ -27,6 +28,10 @@ export const SignUp = () => {
           [nameInput]: value,
         }))
     }
+
+    const handleCheckboxChange = (gender: Gender) => {
+		setFormData({ ...formData, gender })
+	}
 
     return (
         <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
@@ -111,7 +116,7 @@ export const SignUp = () => {
                         />
                     </div>
 
-                    <GenderCheckbox />
+                    <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={formData.gender} />
 
                     <Link 
                         to={"/login"}
