@@ -1,4 +1,4 @@
-export interface IUserSingUpForm {
+export interface IUserSignUpForm {
     firstName: string,
     lastName: string,
     userName: string,

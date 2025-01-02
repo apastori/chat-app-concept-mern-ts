@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { GenderCheckbox } from './GenderCheckBox'
 import { Link } from 'react-router-dom'
-import { IUserSingUpForm } from '../../types/IUserSignUpForm';
-import { Gender } from '../../types/Gender';
+import { IUserSignUpForm } from '../../types/IUserSignUpForm'
+import { Gender } from '../../types/Gender'
+import { useSignup } from '../../hooks/useSignup'
 
 export const SignUp = () => {
 
-    const [formData, setFormData]: [IUserSingUpForm, React.Dispatch<React.SetStateAction<IUserSingUpForm>>] = useState<IUserSingUpForm>({
+    const [formData, setFormData]: [IUserSignUpForm, React.Dispatch<React.SetStateAction<IUserSignUpForm>>] = useState<IUserSignUpForm>({
 		firstName: "",
         lastName: "",
 		userName: "",
@@ -15,21 +16,25 @@ export const SignUp = () => {
 		gender: "",
 	})
 
+    const { loading, signup }: {
+        loading: boolean,
+        signup: (params: IUserSignUpForm) => Promise<void>
+    } = useSignup() 
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault()
-        console.log(formData)
+        await signup(formData)
     }
 
-    const handleChange = (nameInput: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (nameInput: string, e: React.ChangeEvent<HTMLInputElement>): void => {
         const { value } = e.target;
-        setFormData((prevData) => ({
+        setFormData((prevData: IUserSignUpForm) => ({
           ...prevData,
           [nameInput]: value,
         }))
     }
 
-    const handleCheckboxChange = (gender: Gender) => {
+    const handleCheckboxChange = (gender: Gender): void => {
 		setFormData({ ...formData, gender })
 	}
 
