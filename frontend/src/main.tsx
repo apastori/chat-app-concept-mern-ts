@@ -5,6 +5,7 @@ import { RootNotFoundError } from './errors/RootNotFoundError.ts'
 import { RootNotDivElementError } from './errors/RootNotDivElementError.ts'
 import { App } from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
+import { AuthContextProvider } from './context/AuthContextProvider.tsx'
 
 // Get the Root Element from the DOM
 const rootElement: HTMLElement | null = document.getElementById('root')
@@ -21,7 +22,9 @@ const root: Root = ReactDOM.createRoot(rootElement as HTMLDivElement)
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthContextProvider >
+        <App />
+      </AuthContextProvider>
     </BrowserRouter>
   </StrictMode>,
 )

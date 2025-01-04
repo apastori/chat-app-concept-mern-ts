@@ -2,7 +2,7 @@ interface AuthAPIBackendResponseError {
     error: string
 }
 
-interface AuthAPIBackendResponseOK {
+export interface AuthAPIBackendResponseOK {
     _id: string,
     firstName: string,
     lastName: string,
