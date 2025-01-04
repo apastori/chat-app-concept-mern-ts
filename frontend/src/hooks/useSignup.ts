@@ -10,7 +10,7 @@ import { IUserLocalStorage } from "../types/IUserLocalStorage"
 const useSignup: () => {
 	loading: boolean
 	signup: (params: IUserSignUpForm) => Promise<void>
-  } = () => {
+} = () => {
 	const [loading, setLoading]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState(false)
 	const { setAuthUser }: { setAuthUser: (user: IUserLocalStorage | null) => void } = useAuthContext()
 	//const { setAuthUser } = useAuthContext();

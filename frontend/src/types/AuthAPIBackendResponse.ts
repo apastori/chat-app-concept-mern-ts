@@ -1,4 +1,4 @@
-interface AuthAPIBackendResponseError {
+export interface AuthAPIBackendResponseError {
     error: string
 }
 
