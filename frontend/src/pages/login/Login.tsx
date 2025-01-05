@@ -1,16 +1,27 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { useLogin } from "../../hooks/useLogin"
 
 
 export const Login = () => {
-    //const [username, setUsername]: [string, React.Dispatch<React.SetStateAction<string>>] = useState("")
-	//const [password, setPassword]: [string, React.Dispatch<React.SetStateAction<string>>]  = useState("")
+    const [username, setUsername]: [string, React.Dispatch<React.SetStateAction<string>>] = useState("")
+	const [password, setPassword]: [string, React.Dispatch<React.SetStateAction<string>>] = useState("")
+
+    const { loading, login }: {
+            loading: boolean,
+            login: (username: string, password: string) => Promise<void>
+        } = useLogin()
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+        e.preventDefault()
+        await login(username, password)
+    }
+
     return (
         <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
             <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
                 <h1 className='text-3xl font-semibold text-center text-gray-300'>Login <span className='text-blue-500'>Chat-App-Concept</span></h1>
-                <form>
-
+                <form onSubmit={handleSubmit}>
                     <div>
                         <label className='label p-2'>
                             <span className='text-base label-text'>Username</span>
@@ -19,7 +30,7 @@ export const Login = () => {
                             type='text'
                             placeholder='Enter username'
                             className='w-full input input-bordered h-10'
-                            onChange={(e) => console.log(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
                         />
                     </div>
 
@@ -31,7 +42,7 @@ export const Login = () => {
                             type='password'
                             placeholder='Enter Password'
                             className='w-full input input-bordered h-10'
-                            onChange={(e) => console.log(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                         />
                     </div>
 
@@ -42,7 +53,6 @@ export const Login = () => {
                     <div>
                         <button className='btn btn-block btn-sm mt-2'>Login</button>
                     </div>
-
                 </form>
             </div>    
         </div>

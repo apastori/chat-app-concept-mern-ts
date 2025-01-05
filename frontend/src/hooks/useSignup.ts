@@ -27,7 +27,6 @@ const useSignup: () => {
 			const data: AuthAPIBackendResponse = await res.json()
 			if ("error" in data) throw new Error(data.error)
 			localStorage.setItem("chat-user", JSON.stringify(data))
-			console.log(data)
 			setAuthUser(data)
 		} catch (error: unknown) {
 			if (error instanceof Error) {
