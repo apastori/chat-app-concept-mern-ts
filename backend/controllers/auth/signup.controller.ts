@@ -60,6 +60,7 @@ export const signup: RequestHandler = async (req: Request, res: Response): Promi
             _id: newUser._id,
             firstName: newUser.firstName,
             lastName: newUser.lastName,
+            username: newUser.userName,
             profilePic: newUser.profilePic
         })
     } catch (error: unknown) {

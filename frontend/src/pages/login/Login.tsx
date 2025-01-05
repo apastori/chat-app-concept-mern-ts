@@ -8,9 +8,9 @@ export const Login = () => {
 	const [password, setPassword]: [string, React.Dispatch<React.SetStateAction<string>>] = useState("")
 
     const { loading, login }: {
-            loading: boolean,
-            login: (username: string, password: string) => Promise<void>
-        } = useLogin()
+        loading: boolean,
+        login: (username: string, password: string) => Promise<void>
+    } = useLogin()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault()

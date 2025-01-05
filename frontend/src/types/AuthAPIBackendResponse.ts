@@ -6,6 +6,7 @@ export interface AuthAPIBackendResponseOK {
     _id: string,
     firstName: string,
     lastName: string,
+    userName: string,
     profilePic: string
 }
 

@@ -11,15 +11,17 @@ const useLogin: () => {
 	const [loading, setLoading]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState(false)
 	const { setAuthUser }: { setAuthUser: (user: IUserLocalStorage | null) => void } = useAuthContext()
 
-	const login = async (username: string, password: string): Promise<void> => {
-		const success = handleInputErrors(username, password)
+	const login = async (userName: string, password: string): Promise<void> => {
+		const success = handleInputErrors(userName, password)
 		if (!success) return
 		setLoading(true)
+		console.log(userName)
+		console.log(password)
 		try {
 			const res = await fetch("/api/auth/login", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ username, password })
+				body: JSON.stringify({ userName, password })
 			})
 			const data: AuthAPIBackendResponse = await res.json()
             if ("error" in data) throw new Error(data.error)
@@ -42,8 +44,8 @@ const useLogin: () => {
 	return { loading, login }
 }
 
-function handleInputErrors(username: string, password: string): boolean {
-	if (!username || !password) {
+function handleInputErrors(userName: string, password: string): boolean {
+	if (!userName || !password) {
 		toast.error("Please fill in all fields")
 		return false
 	}
