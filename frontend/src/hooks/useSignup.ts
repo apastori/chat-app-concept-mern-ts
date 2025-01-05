@@ -31,6 +31,10 @@ const useSignup: () => {
 			setAuthUser(data)
 		} catch (error: unknown) {
 			if (error instanceof Error) {
+				if (error.message) {
+					toast.error(error.message)
+					return
+				}
 				toast.error("Cannot signup user because of server malfunction")
 				return
 			}
