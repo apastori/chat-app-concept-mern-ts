@@ -31,7 +31,7 @@ const useSignup: () => {
 			setAuthUser(data)
 		} catch (error: unknown) {
 			if (error instanceof Error) {
-				if (error.message) {
+				if (error.message === "Username already exists") {
 					toast.error(error.message)
 					return
 				}
@@ -40,7 +40,7 @@ const useSignup: () => {
 			}
 			console.error("Unknown error:", error)
 		} finally {
-			setLoading(false);
+			setLoading(false)
 		}
 	}
 	return { loading, signup }
