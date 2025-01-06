@@ -8,7 +8,7 @@ const useLogout: () => {
     loading: boolean
     logout: () => Promise<void>
 } = () => {
-	const [loading, setLoading]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState(false)
+	const [loading, setLoading]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false)
 	const { setAuthUser }: { setAuthUser: (user: IUserLocalStorage | null) => void } = useAuthContext()
 
 	const logout = async (): Promise<void> => {

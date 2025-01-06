@@ -8,7 +8,7 @@ const useLogin: () => {
     loading: boolean
     login: (username: string, password: string) => Promise<void>
 } = () => {
-	const [loading, setLoading]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState(false)
+	const [loading, setLoading]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false)
 	const { setAuthUser }: { setAuthUser: (user: IUserLocalStorage | null) => void } = useAuthContext()
 
 	const login = async (userName: string, password: string): Promise<void> => {
