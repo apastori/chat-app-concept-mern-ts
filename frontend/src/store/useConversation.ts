@@ -1,10 +1,11 @@
-import { create } from "zustand"
+import { create, StoreApi, UseBoundStore } from "zustand"
+import { ConversationStore } from "../types/ConversationStore"
 
-const useConversation = create((set) => ({
+const useConversation: UseBoundStore<StoreApi<ConversationStore>> = create<ConversationStore>((set) => ({
 	selectedConversation: null,
-	setSelectedConversation: (selectedConversation: any) => set({ selectedConversation }),
+	setSelectedConversation: (selectedConversation) => set({ selectedConversation }),
 	messages: [],
-	setMessages: (messages: any) => set({ messages }),
-}));
+	setMessages: (messages) => set({ messages })
+}))
 
 export { useConversation }
