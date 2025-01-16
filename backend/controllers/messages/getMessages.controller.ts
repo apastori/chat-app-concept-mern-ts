@@ -17,7 +17,6 @@ export const getMessages = async (req: Request, res: Response): Promise<void> =>
             return
         }    
 		const messages = conversation.messages
-
 		res.status(200).json(messages)
     } catch(error: unknown) {
         if (error instanceof Error) {

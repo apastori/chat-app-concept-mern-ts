@@ -14,7 +14,9 @@ const useGetConversations: () => {
 		const getConversations = async (): Promise<void> => {
 			setLoading(true)
 			try {
-				const res: Response = await fetch("/api/users")
+				const res: Response = await fetch("/api/users", {
+					method: 'GET'
+				})
 				const data: IUserConversationAPI[] | IUserConversationAPIOrError = await res.json()
 				if ("error" in data) throw new Error(data.error)
 				setConversations(data as IUserConversationAPI[])

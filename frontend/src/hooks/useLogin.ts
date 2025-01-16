@@ -15,8 +15,6 @@ const useLogin: () => {
 		const success = handleInputErrors(userName, password)
 		if (!success) return
 		setLoading(true)
-		console.log(userName)
-		console.log(password)
 		try {
 			const res = await fetch("/api/auth/login", {
 				method: "POST",

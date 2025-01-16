@@ -2,7 +2,7 @@ import { TiMessages } from "react-icons/ti"
 import { useAuthContext } from "../../context/useAuthContext"
 import { IUserLocalStorage } from "../../types/IUserLocalStorage"
 
-export const NoChatSelected = () => {
+export const NoChatSelected = (): JSX.Element => {
 	const { authUser }: {authUser: IUserLocalStorage} = useAuthContext()
 	return (
 		<div className='flex items-center justify-center w-full h-full'>

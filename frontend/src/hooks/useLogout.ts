@@ -16,7 +16,7 @@ const useLogout: () => {
 		try {
 			const res: Response = await fetch("/api/auth/logout", {
 				method: "POST",
-				headers: { "Content-Type": "application/json" },
+				headers: { "Content-Type": "application/json" }
 			})
 			const data: IMessageLogout = await res.json()
 			if ("error" in data) throw new Error(data.error)
@@ -24,7 +24,11 @@ const useLogout: () => {
 			setAuthUser(null)
 		} catch (error: unknown) {
 			if (error instanceof Error) {
-				toast.error("Cannot logout user because of server malfunction")
+				if (error.message === "Internal Server Error") {
+					toast.error(error.message)
+					return
+				}
+				toast.error("Cannot logout User because of server malfunction")
 				return
 			}
 			console.error("Unknown error:", error)
@@ -33,5 +37,6 @@ const useLogout: () => {
 		}
 	}
 	return { loading, logout }
-};
+}
+
 export { useLogout }
