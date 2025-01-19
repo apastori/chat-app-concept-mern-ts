@@ -19,7 +19,7 @@ export const Message: React.FC<IMessageProps> = ({ message }: IMessageProps) => 
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
           <img
-            alt="Tailwind CSS chat bubble component"
+            alt="User Avatar Image"
             src={profilePic}
           />
         </div>
