@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from "react"
 //import { IUserLocalStorage } from "../types/IUserLocalStorage"
 import { AuthContext as AuthContextType } from "../types/AuthContext"
 

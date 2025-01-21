@@ -5,10 +5,11 @@ import { startExpressServer } from './startExpressServer'
 import authRoutes from './routes/auth.routes'
 import { router as messageRoutes } from './routes/message.routes'
 import { router as userRoutes } from './routes/user.routes'
+import { app, server } from "./socket/socket"
 
 Object.assign(process.env, ProcessEnvFinal)
 
-const app: Application = express()
+//const app: Application = express()
 
 const PORT: string | '5000' = process.env['PORT'] || '5000'
 

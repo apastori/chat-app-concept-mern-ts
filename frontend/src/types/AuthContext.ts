@@ -1,4 +1,4 @@
-import { IUserLocalStorage } from "./IUserLocalStorage";
+import { IUserLocalStorage } from "./IUserLocalStorage"
 
 export interface AuthContext {
     authUser: IUserLocalStorage | null

@@ -1,10 +1,13 @@
 import React from 'react'
 import { IConversationProps } from '../../types/IConversationProps'
 import { useConversation } from '../../store/useConversation'
+import { useSocketContext } from '../../context/useSocketContext'
 
 export const Conversation: React.FC<IConversationProps> = ({conversation, lastIdx, emoji}: IConversationProps) => {
 	const { selectedConversation, setSelectedConversation } = useConversation()
 	const isSelected: boolean = selectedConversation?._id === conversation._id
+	const { onlineUsers }: { onlineUsers: string[] } = useSocketContext()
+	const isOnline: boolean = onlineUsers.includes(conversation._id)
 	return (
 		<React.Fragment>
 			<div className={`flex gap-2 
@@ -13,7 +16,7 @@ export const Conversation: React.FC<IConversationProps> = ({conversation, lastId
 				`}
 				onClick={() => setSelectedConversation(conversation)}
 			>
-				<div className='avatar online'>
+				<div className={`avatar ${isOnline ? "online" : ""}`}>
 					<div className='w-12 rounded-full'>
 						<img
 							src={conversation.profilePic}
