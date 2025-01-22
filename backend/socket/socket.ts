@@ -3,16 +3,23 @@ import http from "http"
 import express, { Application } from "express"
 import { IUserSocketMap } from "../types/IUserSocketMap"
 import { SocketIdNotFoundError } from "../errors/SocketIdNotFoundError"
+import cors from 'cors'
 
 const app: Application = express()
 
 const server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse> = http.createServer(app)
 
+app.use(cors({
+	origin: 'http://localhost:3001',
+	credentials: true
+}))
+
 const io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any> = new Server(server, {
 	cors: {
-		origin: ["http://localhost:3001"],
-		methods: ["GET", "POST"]
-	},
+		origin: "http://localhost:3001",
+		methods: ["GET", "POST"],
+		credentials: true
+	}
 })
 
 const userSocketMap: IUserSocketMap = {} // {userId: socketId}
