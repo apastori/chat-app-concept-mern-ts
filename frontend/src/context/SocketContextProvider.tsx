@@ -21,12 +21,16 @@ export const SocketContextProvider: React.FC<ISocketContextProps> = ({ children 
 			const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io("http://localhost:3000", {
 				query: {
 					userId: authUser._id,
-				}
+				},
+				path: '/socket.io/'
 			})
 			setSocket(socket)
 			// socket.on() is used to listen to the events. can be used both on client and server side
 			socket.on("getOnlineUsers", (users: string[]) => {
 				setOnlineUsers(users)
+			})
+			socket.on('connect_error', (error) => {
+				console.error('Connection Error:', error);
 			})
 			return (): void => {
                 socket.close()

@@ -8,7 +8,7 @@ export const MultiConversations = (): JSX.Element => {
 		loading: boolean,
 		conversations: IUserConversationAPI[]
 	} = useGetConversations()
-	console.log("Conversations: ", conversations)
+
 	return (
 		<div className='py-2 flex flex-col overflow-auto'>
 			{conversations.map((conversation: IUserConversationAPI, idx: number) => (
