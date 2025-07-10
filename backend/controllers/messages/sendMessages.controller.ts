@@ -2,6 +2,7 @@ import { Types } from "mongoose"
 import { Conversation } from "../../models/conversation.model"
 import { Message } from "../../models/message.model"
 import { Request, Response , RequestHandler } from 'express'
+import { getReceiverSocketId, io } from "../../socket/socket"
 
 export const sendMessage: RequestHandler = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -32,12 +33,10 @@ export const sendMessage: RequestHandler = async (req: Request, res: Response): 
 		// this will run in parallel
 		await Promise.all([conversation.save(), newMessage.save()]);
 
-		// SOCKET IO FUNCTIONALITY WILL GO HERE
-		// const receiverSocketId = getReceiverSocketId(receiverId);
-		// if (receiverSocketId) {
-		// 	// io.to(<socket_id>).emit() used to send events to specific client
-		// 	io.to(receiverSocketId).emit("newMessage", newMessage);
-		// }
+		const receiverSocketId = getReceiverSocketId(receiverId as string);
+		if (receiverSocketId) {
+			io.to(receiverSocketId).emit("newMessage", newMessage);
+		}
 
 		res.status(201).json(newMessage)  
     } catch (error: unknown) {

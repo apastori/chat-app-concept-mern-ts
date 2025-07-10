@@ -1,7 +1,7 @@
 import { BiLogOut } from "react-icons/bi"
 import { useLogout } from "../../hooks/useLogout"
 
-export const LogoutButton = () => {
+export const LogoutButton = (): JSX.Element => {
 	const {loading, logout}: {
         loading: boolean,
         logout: () => Promise<void>

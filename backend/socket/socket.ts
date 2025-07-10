@@ -11,7 +11,7 @@ const server: http.Server<typeof http.IncomingMessage, typeof http.ServerRespons
 
 const io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any> = new Server(server, {
 	cors: {
-		origin: ["http://localhost:3000", "http://localhost:3001"],
+		origin: ["http://localhost:3001"],
 		methods: ["GET", "POST"],
 		credentials: true
 	},
@@ -41,15 +41,5 @@ io.on("connection", (socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultE
 		io.emit("getOnlineUsers", Object.keys(userSocketMap))
 	})
 })
-
-// Add a test event
-io.on('test-event', (data) => {
-    console.log('Received data:', data);
-});
-
-app.use(cors({
-	origin: 'http://localhost:3001',
-	credentials: true
-}))
 
 export { app, io, server }

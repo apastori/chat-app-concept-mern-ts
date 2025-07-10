@@ -1,9 +1,8 @@
-import React from 'react'
 import { SearchInput } from './SearchInput'
 import { MultiConversations } from './MultiConversations'
 import { LogoutButton } from './LogoutButton'
 
-export const Sidebar = () => {
+export const Sidebar = (): JSX.Element=> {
   return (
     <div className='border-r border-slate-500 p-4 flex flex-col'>
         <SearchInput />
