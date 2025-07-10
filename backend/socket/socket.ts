@@ -11,9 +11,9 @@ const server: http.Server<typeof http.IncomingMessage, typeof http.ServerRespons
 
 const io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any> = new Server(server, {
 	cors: {
-		origin: "*",
-		//methods: ["GET", "POST"],
-		//credentials: true
+		origin: ["http://localhost:3000", "http://localhost:3001"],
+		methods: ["GET", "POST"],
+		credentials: true
 	},
 	path: '/socket.io/'
 })
