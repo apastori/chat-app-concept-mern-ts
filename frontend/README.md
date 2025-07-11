@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the client-side code for the chat application, built with React, Vite, and TypeScript. It provides the user interface for the chat application, allowing users to sign up, log in, and chat with each other in real-time.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React:** A JavaScript library for building user interfaces.
+- **Vite:** A fast build tool and development server for modern web projects.
+- **TypeScript:** A typed superset of JavaScript.
+- **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
+- **DaisyUI:** A component library for Tailwind CSS.
+- **React Router:** For client-side routing.
+- **Zustand:** A small, fast, and scalable state management solution.
+- **Socket.IO Client:** For real-time communication with the backend server.
+- **React Hot Toast:** For displaying notifications.
+- **React Icons:** For using icons in the application.
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The frontend is organized into the following directories:
 
-- Configure the top-level `parserOptions` property like this:
+- **`src/`**: Contains the main source code for the application.
+  - **`components/`**: Contains reusable React components, organized by feature.
+  - **`context/`**: Contains React Context providers for managing global state, such as authentication and Socket.IO connections.
+  - **`hooks/`**: Contains custom React hooks for handling side effects, such as fetching data from the API and managing user authentication.
+  - **`pages/`**: Contains the main pages of the application, such as the home, login, and signup pages.
+  - **`store/`**: Contains the Zustand store for managing the conversation state.
+  - **`types/`**: Contains all the custom types and interfaces used in the project.
+  - **`utils/`**: Contains utility functions used throughout the application.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Available Scripts
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+In the `frontend/` directory, the following scripts are available:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **`npm run dev`**: Starts the development server.
+- **`npm run build`**: Builds the application for production.
+- **`npm run lint`**: Lints the code using ESLint.
+- **`npm run preview`**: Starts a local server to preview the production build.
